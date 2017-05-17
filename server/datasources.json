@@ -1,0 +1,30 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "restimpact": {
+    "name": "restimpact",
+    "crud": false,
+    "connector": "rest",
+    "operations": [{
+      "template": {
+        "method": "{method}",
+        "url": "{url}",
+        "headers": {
+          "authorization": "Basic dXNlcjpidW5qZWU=",
+          "accepts": "application/json",
+          "content-type": "application/json; charset=utf-8",
+          "session": "{session}",
+          "content-length": "{Buffer.byteLength(requestParameters)}",
+          "transfer-encoding": "{requestParameters}"
+        },
+        "responsePath": "$.results"
+      },
+      "functions": {
+        "getsession": ["method", "url", "session", "requestParameters"],
+        "getevent": ["method", "url", "session", "requestParameters"]
+      }
+    }]
+  }
+}
